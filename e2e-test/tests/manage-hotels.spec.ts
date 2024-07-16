@@ -39,14 +39,33 @@ test("Should Allow user to add a hotel", async ({ page }) => {
 test("Should Display Hotels", async ({ page }) => {
   await page.goto(`${UI_URL}/my-hotels`);
 
-  await expect(page.getByText("Test Hotel Mode")).toBeVisible();
-  await expect(page.getByText("Test Description")).toBeVisible();
-  await expect(page.getByText("Test City, Test Country")).toBeVisible();
-  await expect(page.getByText("Budget")).toBeVisible();
-  await expect(page.getByText("$2000 per night")).toBeVisible();
-  await expect(page.getByText("2 adults, 1 children")).toBeVisible();
-  await expect(page.getByText("3 Star Rating")).toBeVisible();
+  await expect(page.getByText("Hotel Mode").first()).toBeVisible();
+  await expect(page.getByText("Test Description").first()).toBeVisible();
+  await expect(page.getByText("Test City, Test Country").first()).toBeVisible();
+  await expect(page.getByText("Budget").first()).toBeVisible();
+  await expect(page.getByText("$2000 per night").first()).toBeVisible();
+  await expect(page.getByText("2 adults, 1 children").first()).toBeVisible();
+  await expect(page.getByText("3 Star Rating").first()).toBeVisible();
 
   await expect(page.getByRole("link", { name: "Add Hotel" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "View Details" })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "View Details" }).first()
+  ).toBeVisible();
+});
+
+test("Should Edit Hotel", async ({ page }) => {
+  await page.goto(`${UI_URL}/my-hotels`);
+  await page.getByRole("link", { name: "View Details" }).first().click();
+
+  await page.waitForSelector(`[name="name"]`, { state: "attached" });
+  await expect(page.locator('[name="name"]')).toHaveValue("Hotel Mode Success");
+  await page.locator("[name=name]").fill("Hotel Mode Success");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Hotel Saved!")).toBeVisible();
+
+  await page.reload();
+
+  await expect(page.locator("[name=name]")).toHaveValue("Hotel Mode Success");
+  await page.locator("[name=name]").fill("Hotel Mode");
+  await page.getByRole("button", { name: "Save" }).click();
 });
