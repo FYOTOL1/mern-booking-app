@@ -48,7 +48,7 @@ const SearchBar = () => {
       </div>
 
       <div className="flex bg-white px-2 py-1 gap-2">
-        <label className="flex items-center">
+        <label className="flex items-center cursor-text">
           Adults:
           <input
             className="w-full p-1 focus:outline-none font-bold"
@@ -59,7 +59,7 @@ const SearchBar = () => {
             onChange={(e) => setAdultCount(parseInt(e.target.value))}
           />
         </label>
-        <label className="flex items-center">
+        <label className="flex items-center cursor-text">
           Children:
           <input
             className="w-full p-1 focus:outline-none font-bold"
@@ -82,7 +82,7 @@ const SearchBar = () => {
           minDate={minDate}
           maxDate={maxDate}
           placeholderText="Check-in Date"
-          className="min-w-full bg-white p-2 focus:outline-none"
+          className="min-w-full bg-white p-2 focus:outline-none cursor-pointer"
           wrapperClassName="min-w-full"
         />
       </div>
@@ -96,7 +96,7 @@ const SearchBar = () => {
           minDate={minDate}
           maxDate={maxDate}
           placeholderText="Check-out Date"
-          className="min-w-full bg-white p-2 focus:outline-none"
+          className="min-w-full bg-white p-2 focus:outline-none cursor-pointer"
           wrapperClassName="min-w-full"
         />
       </div>
