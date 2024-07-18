@@ -16,7 +16,7 @@ export type HotelType = {
   type: string;
   adultCount: number;
   childCount: number;
-  facilities: [{ type: string; required: true }];
+  facilities: string[]
   pricePerNight: number;
   starRating: number;
   imageUrls: string[];
