@@ -8,7 +8,10 @@ import hotelRoutes from "./routes/hotels";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
+import Stripe from "stripe";
 import "dotenv/config";
+
+export const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
