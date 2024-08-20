@@ -64,6 +64,16 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const hotels = await Hotel.find().sort("-lastUpdated");
+    res.json(hotels);
+  } catch (err) {
+    console.log("Error", err);
+    res.status(500).json({message: "Error Fetching Hotels"});
+  }
+});
+
 router.get(
   "/:id",
   [param("id").notEmpty().withMessage("Hotel ID is required")],
